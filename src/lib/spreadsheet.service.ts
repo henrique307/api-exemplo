@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { config } from '../config';
 import { google, sheets_v4 } from 'googleapis';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
-import { UpdateUserDto } from 'src/users/dto/update-user.dto';
+import { CreateUserDto } from 'src/routes/users/dto/create-user.dto';
+import { UpdateUserDto } from 'src/routes/users/dto/update-user.dto';
 import { now, today } from './time.handler';
 import { organizeVisitorGroup, sortVisitor } from './sortVisitors';
 import { googleAuth } from './google.auth';
