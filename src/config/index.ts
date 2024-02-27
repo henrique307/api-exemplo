@@ -12,7 +12,7 @@ export const config = {
     },
     google: {
         CLIENT_EMAIL: process.env.CLIENT_EMAIL,
-        PRIVATE_KEY: process.env.PRIVATE_KEY,
+        PRIVATE_KEY: decodeURIComponent(process.env.PRIVATE_KEY),
         SPREADSHEET_ID: process.env.SPREADSHEET_ID
     }
 }
