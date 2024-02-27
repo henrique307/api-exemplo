@@ -26,7 +26,7 @@ export class UsersController {
   }
 
   @ApiOperation({ summary: "Tras todos os 'visitantes' da planilha" })
-  @ApiResponse({ description: "tras todos os visitantes da planilha", type: Array<CreateUserDto>, isArray: true, status: 200 })
+  @ApiResponse({ description: "tras todos os visitantes da planilha", type: CreateUserDto, isArray: true, status: 200 })
   @ApiResponse({ description: "não autorizado", type: Unauthorized, status: 401 })
   @Get()
   findAll() {
@@ -34,7 +34,7 @@ export class UsersController {
   }
 
   @ApiOperation({ summary: "Tras a 'visitante' do 'id' informado da planilha" })
-  @ApiResponse({ description: "tras o 'visitante' do 'id' informado da planilha", type: CreateUserDto, isArray: true, status: 200 })
+  @ApiResponse({ description: "tras o 'visitante' do 'id' informado da planilha", type: CreateUserDto, status: 200 })
   @ApiResponse({ description: "não autorizado", type: Unauthorized, status: 401 })
   @Get(':id')
   findOne(@Param('id') id: string) {
@@ -42,7 +42,7 @@ export class UsersController {
   }
 
   @ApiOperation({ summary: "Altera o 'visitante' do 'id' informado na planilha" })
-  @ApiResponse({ description: "visitante alterado com sucesso!", type: String, isArray: true, status: 200 })
+  @ApiResponse({ description: "visitante alterado com sucesso!", type: String, status: 200 })
   @ApiResponse({ description: "não autorizado", type: Unauthorized, status: 401 })
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
@@ -50,7 +50,7 @@ export class UsersController {
   }
 
   @ApiOperation({ summary: "Deleta o 'visitante' do 'id' informado da planilha" })
-  @ApiResponse({ description: "Visitante deletado com sucesso!", type: Array<CreateUserDto>, isArray: true, status: 200 })
+  @ApiResponse({ description: "Visitante deletado com sucesso!", type: String, status: 200 })
   @ApiResponse({ description: "não autorizado", type: Unauthorized, status: 401 })
   @Delete(':id')
   remove(@Param('id') id: string) {
