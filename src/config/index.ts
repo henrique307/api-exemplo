@@ -1,6 +1,6 @@
-import { config as dotEnvConfig } from 'dotenv-flow';
+import { config as environmentConfig } from 'dotenv';
 
-dotEnvConfig()
+environmentConfig()
 
 export const config = {
     application: {
