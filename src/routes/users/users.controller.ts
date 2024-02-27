@@ -7,6 +7,7 @@ import { Controller, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiHeader, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Unauthorized } from 'src/auth/interface/apiResponse.interfaces';
+import { BasicUserResponse } from './dto/basic-user-response.dto';
 @ApiResponse({ description: "não autorizado", type: Unauthorized, status: 401 })
 
 
@@ -18,7 +19,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
   @ApiOperation({ summary: "Adiciona um 'visitante' a planilha" })
-  @ApiResponse({ description: "usuário adicionado com sucesso!", type: String, isArray: false, status: 200 })
+  @ApiResponse({ description: "usuário adicionado com sucesso!", type: BasicUserResponse, isArray: false, status: 200 })
   @ApiResponse({ description: "não autorizado", type: Unauthorized, status: 401 })
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
@@ -42,7 +43,7 @@ export class UsersController {
   }
 
   @ApiOperation({ summary: "Altera o 'visitante' do 'id' informado na planilha" })
-  @ApiResponse({ description: "visitante alterado com sucesso!", type: String, status: 200 })
+  @ApiResponse({ description: "visitante alterado com sucesso!", type: BasicUserResponse, status: 200 })
   @ApiResponse({ description: "não autorizado", type: Unauthorized, status: 401 })
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
@@ -50,7 +51,7 @@ export class UsersController {
   }
 
   @ApiOperation({ summary: "Deleta o 'visitante' do 'id' informado da planilha" })
-  @ApiResponse({ description: "Visitante deletado com sucesso!", type: String, status: 200 })
+  @ApiResponse({ description: "Visitante deletado com sucesso!", type: BasicUserResponse, status: 200 })
   @ApiResponse({ description: "não autorizado", type: Unauthorized, status: 401 })
   @Delete(':id')
   remove(@Param('id') id: string) {

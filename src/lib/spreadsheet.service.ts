@@ -29,7 +29,7 @@ export class SpreadSheetsService {
         try { await this._sheets.spreadsheets.values.append(visitor) }
         catch (e) { throw e }
 
-        return 'Usuário adicionado com sucesso!';
+        return {message: "Usuário adicionado com sucesso!"};
     }
 
     async findAll() {
@@ -83,7 +83,7 @@ export class SpreadSheetsService {
         try {
             await this._sheets.spreadsheets.values.update(request)
 
-            return "Valores Alterados com sucesso!"
+            return {message: "Valores Alterados com sucesso!"}
         } catch (e) { throw e }
     }
 
@@ -108,7 +108,7 @@ export class SpreadSheetsService {
                 spreadsheetId: this._spreadsheet_id
             })
 
-            return "item deletado com sucesso!";
+            return {message: "item deletado com sucesso!"};
         } catch (e) { throw e }
     }
 
