@@ -10,7 +10,7 @@ export class CreateUserDto {
 
     @IsEmail({}, {message: "Email inválido"})
     @IsNotEmpty()
-    @Matches(/^[^=+-]+$/, {message: "os caracteres: '=', '+', '-', e '@' não são permitidos na planilha."})
+    @Matches(/^[^=+-]+$/, {message: "os caracteres: '=', '+' e '-' não são permitidos na planilha."})
     @ApiProperty({type: String, description: "Seu email"})
     email: string
 
