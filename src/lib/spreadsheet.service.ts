@@ -29,7 +29,7 @@ export class SpreadSheetsService {
         try { await this._sheets.spreadsheets.values.append(visitor) }
         catch (e) { throw e }
 
-        return {message: "Usuário adicionado com sucesso!"};
+        return { message: "Usuário adicionado com sucesso!" };
     }
 
     async findAll() {
@@ -46,7 +46,7 @@ export class SpreadSheetsService {
     }
 
     async findOne(id: number) {
-        if(!(await this.findID(id))) return "ERRO: ID não existe na planilha"
+        if (!(await this.findID(id))) return { message: "ERRO: ID não existe na planilha" }
 
         const request: sheets_v4.Params$Resource$Spreadsheets$Values$Batchget = {
             spreadsheetId: this._spreadsheet_id,
@@ -66,7 +66,7 @@ export class SpreadSheetsService {
     }
 
     async update(id: number, updateUserDto: UpdateUserDto) {
-        if(!(await this.findID(id))) return "ERRO: ID não existe na planilha"
+        if (!(await this.findID(id))) return { message: "ERRO: ID não existe na planilha" }
 
         const request: sheets_v4.Params$Resource$Spreadsheets$Values$Update = {
             spreadsheetId: this._spreadsheet_id,
@@ -83,12 +83,12 @@ export class SpreadSheetsService {
         try {
             await this._sheets.spreadsheets.values.update(request)
 
-            return {message: "Valores Alterados com sucesso!"}
+            return { message: "Valores Alterados com sucesso!" }
         } catch (e) { throw e }
     }
 
     async remove(id: number) {
-        if(!(await this.findID(id))) return "ERRO: ID não existe na planilha"
+        if (!(await this.findID(id))) return { message: "ERRO: ID não existe na planilha" }
 
         try {
             const res = this._sheets.spreadsheets.batchUpdate({
@@ -108,11 +108,11 @@ export class SpreadSheetsService {
                 spreadsheetId: this._spreadsheet_id
             })
 
-            return {message: "item deletado com sucesso!"};
+            return { message: "item deletado com sucesso!" };
         } catch (e) { throw e }
     }
 
-    private async findID(id: number) {        
+    private async findID(id: number) {
         const request: sheets_v4.Params$Resource$Spreadsheets$Values$Get = {
             spreadsheetId: this._spreadsheet_id,
             range: "visitors!A:A"
@@ -124,9 +124,9 @@ export class SpreadSheetsService {
              */
             const ids = (await this._sheets.spreadsheets.values.get(request))
                 .data.values
-                    .toString()
-                    .replace(/\]\[/g, "")
-                    .split(",")
+                .toString()
+                .replace(/\]\[/g, "")
+                .split(",")
 
             return ids.includes(`${id}`)
         } catch (e) { throw e }
