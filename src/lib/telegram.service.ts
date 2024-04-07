@@ -3,6 +3,7 @@ import { configDotenv } from 'dotenv';
 import { LoginBody } from 'src/auth/interface/loginBody.interface';
 import { Telegraf } from 'telegraf';
 import { config } from '../config';
+import { MessageDTO } from 'src/routes/sendTelegram/dto/mensagem.dto';
 
 configDotenv();
 
@@ -25,6 +26,24 @@ export class TelegramService {
                             `foi informado o email ${loginBody.email}`
                             : `não foi informado nenhum email`
                         }`
+                )
+        }
+    }
+
+    async sendMessage(messageDTO: MessageDTO) {
+        for (let id of this.ids) {
+            await this.bot.telegram
+                .sendMessage(
+                    id,
+                    `
+Mensagem recebida no portfolio de um visitante!
+                    
+nome: ${messageDTO.nome}
+telefone: ${messageDTO.telefone}
+email: ${messageDTO.email}
+
+${messageDTO.mensagem}
+                    `
                 )
         }
     }
