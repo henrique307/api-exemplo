@@ -12,7 +12,7 @@ const swaggerConfig = new DocumentBuilder()
         https://henrique307.github.io/portfolio-react/
         `
     )
-    .setVersion("1.0")
+    .setVersion("1.1")
     .addBearerAuth()
     .build();
 
